@@ -2,6 +2,7 @@
 import { siteConfig } from '@/config/site';
 import {
   getLocalizedPath,
+  getMessages,
   type Locale,
 } from '@/i18n';
 import type { GalleryEntry } from '@/lib/gallery';
@@ -16,6 +17,7 @@ interface Props {
   showHeader?: boolean;
   bottomToolbarLabel?: string;
   showBottomAboutLink?: boolean;
+  bottomToolbarLogo?: string;
   bottomToolbarName?: string;
   bottomToolbarSubtitle?: string;
 }
@@ -28,62 +30,62 @@ const {
   totalPages,
   basePath,
   showHeader = true,
-  bottomToolbarLabel = '底部操作栏',
+  bottomToolbarLabel,
   showBottomAboutLink = true,
+  bottomToolbarLogo,
   bottomToolbarName,
   bottomToolbarSubtitle,
 } = Astro.props;
 
+const m = getMessages(locale);
+const galleryCopy = m.galleryPage;
 const galleryHref = getLocalizedPath(basePath, locale);
 const galleryPageHref = (page: number) =>
   page === 1
     ? galleryHref
     : getLocalizedPath(`${basePath}/page/${page}/`, locale);
-const timePlusConfig = siteConfig.timeplusGallery ?? {};
-const githubLink = timePlusConfig.githubHref || 'https://github.com/zhheo/TimePlus';
-const authorHomeLink = timePlusConfig.homeHref || 'https://zhheo.com/';
-const authorSocialLink = timePlusConfig.weiboHref || 'https://weibo.com/u/6277622585';
-const indexName = timePlusConfig.indexName || timePlusConfig.brandName || 'TimePlus';
-const indexSuffix = timePlusConfig.indexSuffix || timePlusConfig.subtitle || '一款简约的相册主题';
-const headerName = timePlusConfig.headerName || indexName;
-const headerSubtitle = timePlusConfig.headerSubtitle || indexSuffix;
+const photosConfig = siteConfig.photosGallery ?? {};
+const githubLink = photosConfig.githubHref || 'https://github.com/justinhuangcode/astro-theme-aither';
+const authorHomeLink = photosConfig.homeHref || '/';
+const indexName = galleryCopy.name;
+const indexSuffix = galleryCopy.subtitle;
+const headerName = indexName;
+const headerSubtitle = indexSuffix;
+const headerLogo = bottomToolbarLogo ?? photosConfig.logo ?? '/author-avatar.svg';
 const toolbarName = bottomToolbarName ?? headerName;
 const toolbarSubtitle = bottomToolbarSubtitle ?? headerSubtitle;
-const aboutHtml =
-  timePlusConfig.aboutHtml ||
-  'A minimalist photo album theme by ZHHEO & ZMKI, rebuilt on Astro while preserving the original visual and interaction model.';
-const aboutText = aboutHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+const aboutHtml = galleryCopy.aboutHtml;
+const aboutText = galleryCopy.description;
+const resolvedBottomToolbarLabel = bottomToolbarLabel ?? galleryCopy.bottomToolbarLabel;
 
-const timePlusUi = {
+const photosUi = {
   indexName,
   pageTitle: `${indexName} - ${indexSuffix}`,
   name: toolbarName,
   title: toolbarSubtitle,
   description: aboutText,
   aboutHtml,
-  categoriesLabel: '分类',
-  allLabel: '全部',
-  fullscreen: '切换全屏',
-  exitFullscreen: '退出全屏',
-  aboutLinkLabel: '关于',
-  aboutTitle: `关于${indexName}`,
-  contactTitle: '联系我',
-  previousLabel: '上一页',
-  nextLabel: '下一页',
-  emptyTitle: '暂无内容',
-  emptyDescription: '当前还没有相册内容。',
-  copyright: '© 设计 ZHHEO & ZMKI',
-  themeLabel: '主题',
-  themeName:
-    timePlusConfig.themeDisplayName ||
-    '洪墨时光',
-  police: timePlusConfig.police || '',
-  icp: timePlusConfig.icp || '',
-  statsHtml: timePlusConfig.statsHtml || '',
-  logo: timePlusConfig.logo || '/timeplus/info/timeplus.webp',
-  ogImage: timePlusConfig.ogImage || '/timeplus/info/timeplus.webp',
-  thumbSuffix: timePlusConfig.thumbnailSuffix || '',
-  displaySuffix: timePlusConfig.displaySuffix || '',
+  categoriesLabel: galleryCopy.categoriesLabel,
+  allLabel: galleryCopy.allLabel,
+  fullscreen: galleryCopy.fullscreen,
+  exitFullscreen: galleryCopy.exitFullscreen,
+  aboutLinkLabel: galleryCopy.aboutLinkLabel,
+  aboutTitle: galleryCopy.aboutTitle.replace('{name}', indexName),
+  contactTitle: galleryCopy.contactTitle,
+  previousLabel: galleryCopy.previousLabel,
+  nextLabel: galleryCopy.nextLabel,
+  emptyTitle: galleryCopy.emptyTitle,
+  emptyDescription: galleryCopy.emptyDescription,
+  copyright: `© ${siteConfig.author.name}`,
+  themeLabel: galleryCopy.themeLabel,
+  themeName: indexName,
+  police: photosConfig.police || '',
+  icp: photosConfig.icp || '',
+  statsHtml: photosConfig.statsHtml || '',
+  logo: headerLogo,
+  ogImage: photosConfig.ogImage || '/author-avatar.svg',
+  thumbSuffix: photosConfig.thumbnailSuffix || '',
+  displaySuffix: photosConfig.displaySuffix || '',
 };
 
 function formatDate(date: Date) {
@@ -98,11 +100,11 @@ function getEntryCover(entry: GalleryEntry) {
 }
 
 function getThumbUrl(entry: GalleryEntry) {
-  return `${getEntryCover(entry)}${timePlusUi.thumbSuffix}`;
+  return `${getEntryCover(entry)}${photosUi.thumbSuffix}`;
 }
 
 function getDisplayUrl(entry: GalleryEntry) {
-  return `${getEntryCover(entry)}${timePlusUi.displaySuffix}`;
+  return `${getEntryCover(entry)}${photosUi.displaySuffix}`;
 }
 
 function getPageRange() {
@@ -117,17 +119,17 @@ const { start: pageStart, end: pageEnd } = getPageRange();
 
 {
   showHeader && (
-    <header id="header" aria-label={bottomToolbarLabel}>
-      <a href={galleryHref}><img class="site-logo" src={timePlusUi.logo} alt={timePlusUi.name} /></a>
-      <h1><a href={galleryHref}><strong>{timePlusUi.name}</strong></a></h1>
-      <span class="discription">{timePlusUi.title}</span>
-      <nav aria-label={bottomToolbarLabel}>
+    <header id="header" aria-label={resolvedBottomToolbarLabel}>
+      <a href={galleryHref}><img class="site-logo" src={photosUi.logo} alt={photosUi.name} /></a>
+      <h1><a href={galleryHref}><strong>{photosUi.name}</strong></a></h1>
+      <span class="discription">{photosUi.title}</span>
+      <nav aria-label={resolvedBottomToolbarLabel}>
         <ul class="nav_links">
           <li class="nav-item">
-            <a class="icon solid fa-info-circle nav-item-name">{timePlusUi.categoriesLabel}</a>
+            <a class="icon solid fa-info-circle nav-item-name">{photosUi.categoriesLabel}</a>
             <ul class="nav-item-child">
               <li class="category-level-0 category-parent">
-                <a href={galleryHref} style="cursor: pointer;">{timePlusUi.allLabel}</a>
+                <a href={galleryHref} style="cursor: pointer;">{photosUi.allLabel}</a>
               </li>
               {
                 categories.map((category) => (
@@ -143,16 +145,32 @@ const { start: pageStart, end: pageEnd } = getPageRange();
               type="button"
               id="fullscreen"
               class="btn btn-default visible-lg visible-md"
-              data-enter-fullscreen-label={timePlusUi.fullscreen}
-              data-exit-fullscreen-label={timePlusUi.exitFullscreen}
-              aria-label={timePlusUi.fullscreen}
-              title={timePlusUi.fullscreen}
+              data-enter-fullscreen-label={photosUi.fullscreen}
+              data-exit-fullscreen-label={photosUi.exitFullscreen}
+              aria-label={photosUi.fullscreen}
+              title={photosUi.fullscreen}
             >
-              <i class="iconfont icon-quanping"></i>
+              <svg
+                class="toolbar-icon fullscreen-icon"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <polyline points="9 21 3 21 3 15"></polyline>
+                <line x1="21" y1="3" x2="14" y2="10"></line>
+                <line x1="3" y1="21" x2="10" y2="14"></line>
+              </svg>
             </a>
           </li>
           {
-            showBottomAboutLink && <li><a href="#footer">{timePlusUi.aboutLinkLabel}</a></li>
+            showBottomAboutLink && <li><a href="#footer">{photosUi.aboutLinkLabel}</a></li>
           }
         </ul>
       </nav>
@@ -160,7 +178,7 @@ const { start: pageStart, end: pageEnd } = getPageRange();
   )
 }
 
-<div id="wrapper" data-timeplus-gallery data-gallery-root class:list={[!showHeader && 'no-local-header']}>
+<div id="wrapper" data-photos-gallery data-gallery-root class:list={[!showHeader && 'no-local-header']}>
   <div id="main">
     {
       entries.length > 0 ? (
@@ -168,11 +186,11 @@ const { start: pageStart, end: pageEnd } = getPageRange();
           <article class="thumb img-area" data-gallery-item>
             <a class="image my-photo" href={getDisplayUrl(entry)}>
               <img
-                class="zmki_px my-photo"
-                src="/timeplus/assets/img/loading.gif"
+                class="gallery-photo my-photo"
+                src="/photos-ui/assets/img/loading.gif"
                 data-src={getThumbUrl(entry)}
                 alt={entry.data.title}
-                onerror="this.src='/timeplus/assets/img/loading.gif';this.onerror=null"
+                onerror="this.src='/photos-ui/assets/img/loading.gif';this.onerror=null"
               />
             </a>
             <h2>{entry.data.title}</h2>
@@ -209,8 +227,8 @@ const { start: pageStart, end: pageEnd } = getPageRange();
         ))
       ) : (
         <section class="gallery-empty-state">
-          <h2>{timePlusUi.emptyTitle}</h2>
-          <p>{timePlusUi.emptyDescription}</p>
+          <h2>{photosUi.emptyTitle}</h2>
+          <p>{photosUi.emptyDescription}</p>
         </section>
       )
     }
@@ -220,7 +238,7 @@ const { start: pageStart, end: pageEnd } = getPageRange();
           {
             currentPage > 1 && (
               <a href={galleryPageHref(currentPage - 1)} class="page-btn prev-btn">
-                {timePlusUi.previousLabel}
+                {photosUi.previousLabel}
               </a>
             )
           }
@@ -237,7 +255,7 @@ const { start: pageStart, end: pageEnd } = getPageRange();
           {
             currentPage < totalPages && (
               <a href={galleryPageHref(currentPage + 1)} class="page-btn next-btn">
-                {timePlusUi.nextLabel}
+                {photosUi.nextLabel}
               </a>
             )
           }
@@ -251,21 +269,13 @@ const { start: pageStart, end: pageEnd } = getPageRange();
 <footer id="footer" class="panel">
   <div id="about">
     <section>
-      <h2>{timePlusUi.aboutTitle}</h2>
-      <p set:html={timePlusUi.aboutHtml} />
+      <h2>{photosUi.aboutTitle}</h2>
+      <p set:html={photosUi.aboutHtml} />
     </section>
     <section>
-      <h2>{timePlusUi.contactTitle}</h2>
+      <h2>{photosUi.contactTitle}</h2>
       <ul class="icons">
         <li><a class="contact_link" href={authorHomeLink} target="_blank" rel="noopener nofollow"><i class="iconfont icon-shouye"></i></a></li>
-        <li>
-          <a
-            class="contact_link"
-            href={authorSocialLink}
-            target="_blank"
-            rel="noopener nofollow"
-          ><i class="iconfont icon-weibo"></i></a>
-        </li>
         <li>
           <a
             class="contact_link"
@@ -277,27 +287,27 @@ const { start: pageStart, end: pageEnd } = getPageRange();
       </ul>
     </section>
     <span style="color: #b5b5b5; font-size: 0.8em;">
-      {timePlusUi.statsHtml ? <Fragment set:html={timePlusUi.statsHtml} /> : null}
+      {photosUi.statsHtml ? <Fragment set:html={photosUi.statsHtml} /> : null}
       <div class="copyright-info">
-        <span class="copyright">{timePlusUi.copyright}</span>
+        <span class="copyright">{photosUi.copyright}</span>
         <span class="theme">
-          {timePlusUi.themeLabel}：
-          <a href={githubLink} target="_blank" rel="noopener nofollow">{timePlusUi.themeName}</a>
+          {photosUi.themeLabel}：
+          <a href={githubLink} target="_blank" rel="noopener nofollow">{photosUi.themeName}</a>
         </span>
         {
-          timePlusUi.police && (
+          photosUi.police && (
             <span class="police">
-              <img src="/timeplus/assets/img/police.png" alt="公安备案" style="vertical-align: middle; width: 14px;" />
+              <img src="/photos-ui/assets/img/police.png" alt="公安备案" style="vertical-align: middle; width: 14px;" />
               <a href="https://beian.mps.gov.cn/#/query/webSearch" target="_blank" rel="noopener nofollow">
-                {timePlusUi.police}
+                {photosUi.police}
               </a>
             </span>
           )
         }
         {
-          timePlusUi.icp && (
+          photosUi.icp && (
             <span class="icp">
-              <a href="http://beian.miit.gov.cn/" target="_blank" rel="noopener nofollow">{timePlusUi.icp}</a>
+              <a href="http://beian.miit.gov.cn/" target="_blank" rel="noopener nofollow">{photosUi.icp}</a>
             </span>
           )
         }
@@ -306,10 +316,10 @@ const { start: pageStart, end: pageEnd } = getPageRange();
   </div>
 </footer>
 
-<script is:inline src="/timeplus/assets/js/jquery.min.js"></script>
-<script is:inline src="/timeplus/assets/js/jquery.poptrox.min.js"></script>
-<script is:inline src="/timeplus/assets/js/browser.min.js"></script>
-<script is:inline src="/timeplus/assets/js/breakpoints.min.js"></script>
-<script is:inline src="/timeplus/assets/js/util.js"></script>
-<script is:inline src="/timeplus/assets/js/main.js"></script>
-<script is:inline src="/timeplus/gallery.js"></script>
+<script is:inline src="/photos-ui/assets/js/jquery.min.js"></script>
+<script is:inline src="/photos-ui/assets/js/jquery.poptrox.min.js"></script>
+<script is:inline src="/photos-ui/assets/js/browser.min.js"></script>
+<script is:inline src="/photos-ui/assets/js/breakpoints.min.js"></script>
+<script is:inline src="/photos-ui/assets/js/util.js"></script>
+<script is:inline src="/photos-ui/assets/js/main.js"></script>
+<script is:inline src="/photos-ui/gallery.js"></script>

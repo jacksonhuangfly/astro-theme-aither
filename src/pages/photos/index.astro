@@ -1,12 +1,12 @@
 ---
-import PhotosGalleryPage from '@/components/pages/PhotosGalleryPage.astro';
+import EmbeddedGalleryPage from '@/components/pages/EmbeddedGalleryPage.astro';
 import { getPaginatedGallery } from '@/lib/gallery';
 import { rootLocale } from '@/lib/route-helpers';
 
 const { entries, categories, totalPages } = await getPaginatedGallery(rootLocale, 1);
 ---
 
-<PhotosGalleryPage
+<EmbeddedGalleryPage
   locale={rootLocale}
   entries={entries}
   categories={categories}

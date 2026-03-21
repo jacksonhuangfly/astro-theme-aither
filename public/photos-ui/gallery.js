@@ -1,5 +1,5 @@
 (function () {
-  const root = document.querySelector('[data-timeplus-gallery]');
+  const root = document.querySelector('[data-photos-gallery]');
   if (!root) return;
 
   const body = document.body;
@@ -11,7 +11,7 @@
   }
 
   function loadImg(el) {
-    if (!el || el.src && !el.src.includes('/timeplus/assets/img/loading.gif')) return;
+    if (!el || el.src && !el.src.includes('/photos-ui/assets/img/loading.gif')) return;
     const source = el.dataset.src;
     if (source) el.src = source;
   }

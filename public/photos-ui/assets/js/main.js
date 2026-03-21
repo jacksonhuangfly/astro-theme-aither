@@ -298,34 +298,94 @@
 })(jQuery);
 
 // 优化全屏切换功能
-const fullscreenAPI = {
-	enter: document.documentElement.requestFullscreen ||
-		   document.documentElement.mozRequestFullScreen ||
-		   document.documentElement.webkitRequestFullScreen ||
-		   document.documentElement.msRequestFullscreen,
-	exit: document.exitFullscreen ||
-		  document.mozCancelFullScreen ||
-		  document.webkitCancelFullScreen ||
-		  document.msExitFullscreen
-};
+const fullscreenEnterIcon = '<svg class="toolbar-icon fullscreen-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>';
+const fullscreenExitIcon = '<svg class="toolbar-icon fullscreen-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>';
+
+function getFullscreenButton() {
+	return document.getElementById('fullscreen');
+}
+
+function getFullscreenTarget() {
+	const button = getFullscreenButton();
+	if (!button) return document.documentElement;
+	return button.closest('[data-photos-fullscreen-root]') || document.documentElement;
+}
+
+function enterFullscreen(target) {
+	const request =
+		target.requestFullscreen ||
+		target.mozRequestFullScreen ||
+		target.webkitRequestFullscreen ||
+		target.msRequestFullscreen;
+
+	if (request) {
+		request.call(target);
+	}
+}
+
+function exitFullscreen() {
+	const exit =
+		document.exitFullscreen ||
+		document.mozCancelFullScreen ||
+		document.webkitExitFullscreen ||
+		document.webkitCancelFullScreen ||
+		document.msExitFullscreen;
+
+	if (exit) {
+		exit.call(document);
+	}
+}
+
+function isFullscreenActive() {
+	return !!(
+		document.fullscreenElement ||
+		document.mozFullScreenElement ||
+		document.webkitFullscreenElement ||
+		document.msFullscreenElement
+	);
+}
+
+function renderFullscreenButton(isFullscreen) {
+	const button = getFullscreenButton();
+	if (!button) return;
+
+	const enterLabel = button.dataset.enterFullscreenLabel || 'Enter fullscreen';
+	const exitLabel = button.dataset.exitFullscreenLabel || 'Exit fullscreen';
+	const label = isFullscreen ? exitLabel : enterLabel;
+
+	button.setAttribute('aria-label', label);
+	button.setAttribute('title', label);
+	button.innerHTML = isFullscreen ? fullscreenExitIcon : fullscreenEnterIcon;
+}
 
 function toggleFullscreen() {
-	const isFullscreen = document.fullscreenElement ||
-						document.mozFullScreenElement ||
-						document.webkitFullscreenElement ||
-						document.msFullscreenElement;
+	const isFullscreen = isFullscreenActive();
 	
 	if (!isFullscreen) {
-		$("#fullscreen").html("退出全屏");
-		fullscreenAPI.enter.call(document.documentElement);
+		enterFullscreen(getFullscreenTarget());
 	} else {
-		$("#fullscreen").html('<i class="iconfont icon-quanping"></i><use xlink:href="#icon-zmki-ziyuan-copy"></use></svg>');
-		fullscreenAPI.exit.call(document);
+		exitFullscreen();
 	}
 }
 
 // 简化全屏切换事件监听
-$('#fullscreen').on('click', toggleFullscreen);
+$('#fullscreen').on('click', function(event) {
+	event.preventDefault();
+	toggleFullscreen();
+});
+document.addEventListener('fullscreenchange', function() {
+	renderFullscreenButton(isFullscreenActive());
+});
+document.addEventListener('webkitfullscreenchange', function() {
+	renderFullscreenButton(isFullscreenActive());
+});
+document.addEventListener('mozfullscreenchange', function() {
+	renderFullscreenButton(isFullscreenActive());
+});
+document.addEventListener('MSFullscreenChange', function() {
+	renderFullscreenButton(isFullscreenActive());
+});
+renderFullscreenButton(isFullscreenActive());
 
 // 为分页按钮添加动画效果
 $(document).ready(function() {

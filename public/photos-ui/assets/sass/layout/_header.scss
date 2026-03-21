@@ -68,9 +68,9 @@
 						border: 0;
 						color: _palette(fg-bold);
 						display: inline-block;
-						letter-spacing: _font(kerning-alt);
+						letter-spacing: 0.04em;
 						padding: 0 1.65em;
-						text-transform: uppercase;
+						text-transform: none;
 
 						&.icon {
 							&:before {

@@ -2,6 +2,7 @@
 import { siteConfig } from '@/config/site';
 import {
   defaultLocale,
+  getMessages,
   htmlLangs,
   locales,
   stripLocalePrefix,
@@ -24,10 +25,11 @@ const {
   bodyClass = '',
 } = Astro.props;
 
-const timePlusConfig = siteConfig.timeplusGallery ?? {};
-const indexName = timePlusConfig.indexName || timePlusConfig.brandName || 'TimePlus';
-const icon = timePlusConfig.icon || timePlusConfig.logo || '/timeplus/info/timeplus.webp';
-const appleIcon = timePlusConfig.appleIcon || icon;
+const m = getMessages(locale);
+const photosConfig = siteConfig.photosGallery ?? {};
+const indexName = m.galleryPage.name;
+const icon = photosConfig.icon || photosConfig.logo || '/author-avatar.svg';
+const appleIcon = photosConfig.appleIcon || icon;
 const canonicalUrl = new URL(Astro.url.pathname, siteConfig.url).href;
 const cleanPath = stripLocalePrefix(Astro.url.pathname);
 const alternateUrls = locales.map((l) => ({
@@ -35,6 +37,7 @@ const alternateUrls = locales.map((l) => ({
   href: new URL(l === defaultLocale ? cleanPath : `/${l}${cleanPath}`, siteConfig.url).href,
 }));
 const shareImage = image ? new URL(image, siteConfig.url).href : undefined;
+const shareImageType = image?.endsWith('.webp') ? 'image/webp' : image?.endsWith('.png') ? 'image/png' : 'image/jpeg';
 ---
 
 <!DOCTYPE html>
@@ -64,7 +67,7 @@ const shareImage = image ? new URL(image, siteConfig.url).href : undefined;
           <meta property="og:url" content={canonicalUrl} />
           <meta property="og:image" content={shareImage} />
           <meta property="og:image:secure_url" content={shareImage} />
-          <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:type" content={shareImageType} />
           <meta property="og:site_name" content={indexName} />
           <meta property="og:type" content="website" />
           <meta name="twitter:card" content="summary_large_image" />

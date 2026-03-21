@@ -100,7 +100,7 @@ li {
   list-style-type:none;
 }
 
-.icon-zmki {
+.icon-gallery {
   width: 1em;
   height: 1em;
   vertical-align: -0.15em;
@@ -108,7 +108,7 @@ li {
   overflow: hidden;
 }
 
-.zmki_px {
+.gallery-photo {
   border: 0;
   height: 100%;
   left: 0;
@@ -121,7 +121,7 @@ li {
 }
 
 @media screen and (max-width: 1221px) {
-  .zmki_wap {
+  .gallery-mobile {
     display: none;
   }
 
@@ -137,7 +137,7 @@ li {
 
 /*手机端适配  常规尺寸*/
 @media (max-width:768px) {
-  .zmki_px {
+  .gallery-photo {
     background-image: url(../img/20200212-6dafa53ecf4e3.gif);
     background-size: 100% 100%;
   }
@@ -145,7 +145,7 @@ li {
 
 /*iphone X 适配*/
 @media only screen and (device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) {
-  .zmki_px {
+  .gallery-photo {
     background-image: url(../img/20200212-38ce26bb0bd0d.gif);
     background-size: 100% 100%;
   }
@@ -154,7 +154,7 @@ li {
 /*iphone 6/7/8 适配*/
 @media only screen and (device-width:375px) and (device-height:667px) {
 
-  .zmki_px {
+  .gallery-photo {
     background-image: url(../img/20200212-e056a5f2914d6.gif);
     background-size: 100% 100%;
   }
@@ -1823,9 +1823,9 @@ li.category-level-0.category-parent a {
   border: 0;
   color: #ffffff;
   display: inline-block;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   padding: 0 1.65em;
-  text-transform: uppercase;
+  text-transform: none;
   padding: 8px 16px;
   border-radius: 8px;
   white-space: nowrap;

@@ -1,13 +1,13 @@
 # Aither
 
-[English](./README.md) | **简体中文** | [繁體中文](./README_ZH-HANT.md) | [한국어](./README_KO.md) | [Français](./README_FR.md) | [Deutsch](./README_DE.md) | [Italiano](./README_IT.md) | [Español](./README_ES.md) | [Русский](./README_RU.md) | [Bahasa Indonesia](./README_ID.md) | [Português (BR)](./README_PT-BR.md)
+[English](./README.md) | **简体中文** | [繁體中文](./README_ZH-TW.md) | [한국어](./README_KO.md) | [Français](./README_FR.md) | [Deutsch](./README_DE.md) | [Italiano](./README_IT.md) | [Español](./README_ES.md) | [Русский](./README_RU.md) | [Bahasa Indonesia](./README_ID.md) | [Português (BR)](./README_PT-BR.md)
 
-[![Deploy](https://github.com/justinhuangai/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml/badge.svg)](https://github.com/justinhuangai/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml)
+[![Deploy](https://github.com/jacksonhuangfly/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml/badge.svg)](https://github.com/jacksonhuangfly/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Astro](https://img.shields.io/badge/astro-6.0%2B-BC52EE.svg?style=flat-square&logo=astro&logoColor=white)](https://astro.build)
 [![Tailwind CSS](https://img.shields.io/badge/tailwindcss-v4-06B6D4.svg?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-[![GitHub Stars](https://img.shields.io/github/stars/justinhuangai/astro-theme-aither?style=flat-square&logo=github)](https://github.com/justinhuangai/astro-theme-aither/stargazers)
-[![Last Commit](https://img.shields.io/github/last-commit/justinhuangai/astro-theme-aither?style=flat-square)](https://github.com/justinhuangai/astro-theme-aither/commits/main)
+[![GitHub Stars](https://img.shields.io/github/stars/jacksonhuangfly/astro-theme-aither?style=flat-square&logo=github)](https://github.com/jacksonhuangfly/astro-theme-aither/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/jacksonhuangfly/astro-theme-aither?style=flat-square)](https://github.com/jacksonhuangfly/astro-theme-aither/commits/main)
 
 **[在线预览](https://astro-theme-aither.pages.dev)**
 
@@ -62,7 +62,7 @@ flowchart LR
 
 ### 使用 GitHub 模板
 
-1. 在 [GitHub](https://github.com/justinhuangai/astro-theme-aither) 上点击 **"Use this template"**
+1. 在 [GitHub](https://github.com/jacksonhuangfly/astro-theme-aither) 上点击 **"Use this template"**
 2. 克隆你的新仓库：
 
 ```bash
@@ -111,7 +111,7 @@ pnpm dev
 ### 手动方式
 
 ```bash
-git clone https://github.com/justinhuangai/astro-theme-aither.git my-blog
+git clone https://github.com/jacksonhuangfly/astro-theme-aither.git my-blog
 cd my-blog
 corepack enable
 pnpm install
@@ -194,7 +194,7 @@ image: ./optional-cover.jpg
 | `/schemas/agent-protocol.schema.json` | 全局 | `protocol.json` 的 JSON Schema |
 | `/schemas/agent-home.schema.json` | 全局 | `agent/home.json` 的 JSON Schema |
 
-默认 locale `en` 不带前缀。例如英文文章 Markdown 是 `/posts/{slug}.md`，简体中文则是 `/zh-hans/posts/{slug}.md`。
+默认 locale `en` 不带前缀。例如英文文章 Markdown 是 `/posts/{slug}.md`，简体中文则是 `/zh-CN/posts/{slug}.md`。
 
 最佳实践：
 
@@ -309,8 +309,8 @@ PUBLIC_GISCUS_CATEGORY_ID=
 | 代码 | 语言 |
 |---|---|
 | `en` | English（默认） |
-| `zh-hans` | 简体中文 |
-| `zh-hant` | 繁體中文 |
+| `zh-CN` | 简体中文 |
+| `zh-TW` | 繁體中文 |
 | `ko` | 한국어 |
 | `fr` | Français |
 | `de` | Deutsch |
@@ -318,9 +318,9 @@ PUBLIC_GISCUS_CATEGORY_ID=
 | `es` | Español |
 | `ru` | Русский |
 | `id` | Bahasa Indonesia |
-| `pt-br` | Português (BR) |
+| `pt-BR` | Português (BR) |
 
-默认 locale `en` 没有 URL 前缀，其余语言使用各自代码前缀，例如 `/zh-hans/`、`/ko/`。
+默认 locale `en` 没有 URL 前缀，其余语言使用各自代码前缀，例如 `/zh-CN/`、`/ko/`。
 
 最佳实践：把英文 slug 集合作为规范基线，并在部署前用 `pnpm check:post-coverage` 抓出缺失的本地化文章。
 

@@ -1,13 +1,13 @@
 # Aither
 
-[English](./README.md) | [简体中文](./README_ZH-CN.md) | [繁體中文](./README_ZH-TW.md) | **한국어** | [Français](./README_FR.md) | [Deutsch](./README_DE.md) | [Italiano](./README_IT.md) | [Español](./README_ES.md) | [Русский](./README_RU.md) | [Bahasa Indonesia](./README_ID.md) | [Português (BR)](./README_PT-BR.md)
+[English](./README.md) | [简体中文](./README_ZH-CN.md) | [繁體中文](./README_ZH-TW.md) | **한국어** | [Français](./README_FR-FR.md) | [Deutsch](./README_DE-DE.md) | [Italiano](./README_IT-IT.md) | [Español](./README_ES-ES.md) | [Русский](./README_RU-RU.md) | [Bahasa Indonesia](./README_ID-ID.md) | [Português (BR)](./README_PT-BR.md)
 
-[![Deploy](https://github.com/justinhuangai/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml/badge.svg)](https://github.com/justinhuangai/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml)
+[![Deploy](https://github.com/jacksonhuangfly/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml/badge.svg)](https://github.com/jacksonhuangfly/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Astro](https://img.shields.io/badge/astro-6.0%2B-BC52EE.svg?style=flat-square&logo=astro&logoColor=white)](https://astro.build)
 [![Tailwind CSS](https://img.shields.io/badge/tailwindcss-v4-06B6D4.svg?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-[![GitHub Stars](https://img.shields.io/github/stars/justinhuangai/astro-theme-aither?style=flat-square&logo=github)](https://github.com/justinhuangai/astro-theme-aither/stargazers)
-[![Last Commit](https://img.shields.io/github/last-commit/justinhuangai/astro-theme-aither?style=flat-square)](https://github.com/justinhuangai/astro-theme-aither/commits/main)
+[![GitHub Stars](https://img.shields.io/github/stars/jacksonhuangfly/astro-theme-aither?style=flat-square&logo=github)](https://github.com/jacksonhuangfly/astro-theme-aither/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/jacksonhuangfly/astro-theme-aither?style=flat-square)](https://github.com/jacksonhuangfly/astro-theme-aither/commits/main)
 
 **[라이브 미리보기](https://astro-theme-aither.pages.dev)**
 
@@ -62,7 +62,7 @@ flowchart LR
 
 ### GitHub 템플릿 사용
 
-1. [GitHub](https://github.com/justinhuangai/astro-theme-aither)에서 **"Use this template"** 클릭
+1. [GitHub](https://github.com/jacksonhuangfly/astro-theme-aither)에서 **"Use this template"** 클릭
 2. 새 저장소를 clone:
 
 ```bash
@@ -111,7 +111,7 @@ pnpm dev
 ### 수동 설정
 
 ```bash
-git clone https://github.com/justinhuangai/astro-theme-aither.git my-blog
+git clone https://github.com/jacksonhuangfly/astro-theme-aither.git my-blog
 cd my-blog
 corepack enable
 pnpm install
@@ -194,7 +194,7 @@ Your content here.
 | `/schemas/agent-protocol.schema.json` | 전역 | `protocol.json` schema |
 | `/schemas/agent-home.schema.json` | 전역 | `agent/home.json` schema |
 
-기본 locale `en`에는 접두사가 없습니다. 영어는 `/posts/{slug}.md`, 한국어는 `/ko/posts/{slug}.md`를 사용합니다.
+기본 locale `en-US`에는 접두사가 없습니다. 영어는 `/posts/{slug}.md`, 한국어는 `/ko-KR/posts/{slug}.md`를 사용합니다.
 
 권장 사항:
 
@@ -308,16 +308,16 @@ PUBLIC_GISCUS_CATEGORY_ID=
 
 | 코드 | 언어 |
 |---|---|
-| `en` | English (default) |
+| `en-US` | English (default) |
 | `zh-CN` | 简体中文 |
 | `zh-TW` | 繁體中文 |
-| `ko` | 한국어 |
-| `fr` | Français |
-| `de` | Deutsch |
-| `it` | Italiano |
-| `es` | Español |
-| `ru` | Русский |
-| `id` | Bahasa Indonesia |
+| `ko-KR` | 한국어 |
+| `fr-FR` | Français |
+| `de-DE` | Deutsch |
+| `it-IT` | Italiano |
+| `es-ES` | Español |
+| `ru-RU` | Русский |
+| `id-ID` | Bahasa Indonesia |
 | `pt-BR` | Português (BR) |
 
 권장 사항: 영어 slug 집합을 기준 슬러그 집합으로 보고 `pnpm check:post-coverage`를 배포 전에 실행하세요.

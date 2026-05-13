@@ -1,13 +1,13 @@
 # Aither
 
-[English](./README.md) | [简体中文](./README_ZH-CN.md) | [繁體中文](./README_ZH-TW.md) | [한국어](./README_KO.md) | [Français](./README_FR.md) | **Deutsch** | [Italiano](./README_IT.md) | [Español](./README_ES.md) | [Русский](./README_RU.md) | [Bahasa Indonesia](./README_ID.md) | [Português (BR)](./README_PT-BR.md)
+[English](./README.md) | [简体中文](./README_ZH-CN.md) | [繁體中文](./README_ZH-TW.md) | [한국어](./README_KO-KR.md) | [Français](./README_FR-FR.md) | **Deutsch** | [Italiano](./README_IT-IT.md) | [Español](./README_ES-ES.md) | [Русский](./README_RU-RU.md) | [Bahasa Indonesia](./README_ID-ID.md) | [Português (BR)](./README_PT-BR.md)
 
-[![Deploy](https://github.com/justinhuangai/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml/badge.svg)](https://github.com/justinhuangai/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml)
+[![Deploy](https://github.com/jacksonhuangfly/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml/badge.svg)](https://github.com/jacksonhuangfly/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Astro](https://img.shields.io/badge/astro-6.0%2B-BC52EE.svg?style=flat-square&logo=astro&logoColor=white)](https://astro.build)
 [![Tailwind CSS](https://img.shields.io/badge/tailwindcss-v4-06B6D4.svg?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-[![GitHub Stars](https://img.shields.io/github/stars/justinhuangai/astro-theme-aither?style=flat-square&logo=github)](https://github.com/justinhuangai/astro-theme-aither/stargazers)
-[![Last Commit](https://img.shields.io/github/last-commit/justinhuangai/astro-theme-aither?style=flat-square)](https://github.com/justinhuangai/astro-theme-aither/commits/main)
+[![GitHub Stars](https://img.shields.io/github/stars/jacksonhuangfly/astro-theme-aither?style=flat-square&logo=github)](https://github.com/jacksonhuangfly/astro-theme-aither/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/jacksonhuangfly/astro-theme-aither?style=flat-square)](https://github.com/jacksonhuangfly/astro-theme-aither/commits/main)
 
 **[Live-Vorschau](https://astro-theme-aither.pages.dev)**
 
@@ -62,7 +62,7 @@ Gleichzeitig geht das Projekt davon aus, dass Ihre Website nicht nur von Mensche
 
 ### Als GitHub-Template verwenden
 
-1. Klicken Sie auf **"Use this template"** auf [GitHub](https://github.com/justinhuangai/astro-theme-aither)
+1. Klicken Sie auf **"Use this template"** auf [GitHub](https://github.com/jacksonhuangfly/astro-theme-aither)
 2. Klonen Sie Ihr neues Repository:
 
 ```bash
@@ -111,7 +111,7 @@ pnpm dev
 ### Manuelle Einrichtung
 
 ```bash
-git clone https://github.com/justinhuangai/astro-theme-aither.git my-blog
+git clone https://github.com/jacksonhuangfly/astro-theme-aither.git my-blog
 cd my-blog
 corepack enable
 pnpm install
@@ -194,7 +194,7 @@ Empfehlungen:
 | `/schemas/agent-protocol.schema.json` | Global | JSON Schema für `protocol.json` |
 | `/schemas/agent-home.schema.json` | Global | JSON Schema für `agent/home.json` |
 
-Für die Default-Locale `en` gibt es keinen Präfix. Englisches Markdown lebt also unter `/posts/{slug}.md`, Deutsch unter `/de/posts/{slug}.md`.
+Für die Default-Locale `en-US` gibt es keinen Präfix. Englisches Markdown lebt also unter `/posts/{slug}.md`, Deutsch unter `/de-DE/posts/{slug}.md`.
 
 Empfehlungen:
 
@@ -308,19 +308,19 @@ Sprachkonfiguration liegt in `src/i18n/index.ts`, Übersetzungen in `src/i18n/me
 
 | Code | Sprache |
 |---|---|
-| `en` | English (default) |
+| `en-US` | English (default) |
 | `zh-CN` | 简体中文 |
 | `zh-TW` | 繁體中文 |
-| `ko` | 한국어 |
-| `fr` | Français |
-| `de` | Deutsch |
-| `it` | Italiano |
-| `es` | Español |
-| `ru` | Русский |
-| `id` | Bahasa Indonesia |
+| `ko-KR` | 한국어 |
+| `fr-FR` | Français |
+| `de-DE` | Deutsch |
+| `it-IT` | Italiano |
+| `es-ES` | Español |
+| `ru-RU` | Русский |
+| `id-ID` | Bahasa Indonesia |
 | `pt-BR` | Português (BR) |
 
-Die Default-Locale `en` hat keinen URL-Präfix. Andere Locales verwenden ihren Code, z. B. `/de/`, `/zh-CN/` oder `/ko/`.
+Die Default-Locale `en-US` hat keinen URL-Präfix. Andere Locales verwenden ihren Code, z. B. `/de-DE/`, `/zh-CN/` oder `/ko-KR/`.
 
 Empfehlung: Englisch als kanonische Baseline für Slugs behandeln und `pnpm check:post-coverage` vor der Bereitstellung laufen lassen.
 

@@ -1,13 +1,13 @@
 # Aither
 
-[English](./README.md) | [简体中文](./README_ZH-CN.md) | [繁體中文](./README_ZH-TW.md) | [한국어](./README_KO.md) | [Français](./README_FR.md) | [Deutsch](./README_DE.md) | **Italiano** | [Español](./README_ES.md) | [Русский](./README_RU.md) | [Bahasa Indonesia](./README_ID.md) | [Português (BR)](./README_PT-BR.md)
+[English](./README.md) | [简体中文](./README_ZH-CN.md) | [繁體中文](./README_ZH-TW.md) | [한국어](./README_KO-KR.md) | [Français](./README_FR-FR.md) | [Deutsch](./README_DE-DE.md) | **Italiano** | [Español](./README_ES-ES.md) | [Русский](./README_RU-RU.md) | [Bahasa Indonesia](./README_ID-ID.md) | [Português (BR)](./README_PT-BR.md)
 
-[![Deploy](https://github.com/justinhuangai/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml/badge.svg)](https://github.com/justinhuangai/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml)
+[![Deploy](https://github.com/jacksonhuangfly/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml/badge.svg)](https://github.com/jacksonhuangfly/astro-theme-aither/actions/workflows/deploy-cloudflare-pages.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Astro](https://img.shields.io/badge/astro-6.0%2B-BC52EE.svg?style=flat-square&logo=astro&logoColor=white)](https://astro.build)
 [![Tailwind CSS](https://img.shields.io/badge/tailwindcss-v4-06B6D4.svg?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-[![GitHub Stars](https://img.shields.io/github/stars/justinhuangai/astro-theme-aither?style=flat-square&logo=github)](https://github.com/justinhuangai/astro-theme-aither/stargazers)
-[![Last Commit](https://img.shields.io/github/last-commit/justinhuangai/astro-theme-aither?style=flat-square)](https://github.com/justinhuangai/astro-theme-aither/commits/main)
+[![GitHub Stars](https://img.shields.io/github/stars/jacksonhuangfly/astro-theme-aither?style=flat-square&logo=github)](https://github.com/jacksonhuangfly/astro-theme-aither/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/jacksonhuangfly/astro-theme-aither?style=flat-square)](https://github.com/jacksonhuangfly/astro-theme-aither/commits/main)
 
 **[Anteprima live](https://astro-theme-aither.pages.dev)**
 
@@ -62,7 +62,7 @@ Allo stesso tempo, il progetto assume che il sito sarà letto tanto dal software
 
 ### Usa come template GitHub
 
-1. Clicca **"Use this template"** su [GitHub](https://github.com/justinhuangai/astro-theme-aither)
+1. Clicca **"Use this template"** su [GitHub](https://github.com/jacksonhuangfly/astro-theme-aither)
 2. Clona il tuo nuovo repository:
 
 ```bash
@@ -111,7 +111,7 @@ pnpm dev
 ### Setup manuale
 
 ```bash
-git clone https://github.com/justinhuangai/astro-theme-aither.git my-blog
+git clone https://github.com/jacksonhuangfly/astro-theme-aither.git my-blog
 cd my-blog
 corepack enable
 pnpm install
@@ -194,7 +194,7 @@ Buone pratiche:
 | `/schemas/agent-protocol.schema.json` | Globale | JSON Schema di `protocol.json` |
 | `/schemas/agent-home.schema.json` | Globale | JSON Schema di `agent/home.json` |
 
-La locale predefinita `en` non ha prefisso. Il Markdown inglese vive quindi in `/posts/{slug}.md`, quello italiano in `/it/posts/{slug}.md`.
+La locale predefinita `en-US` non ha prefisso. Il Markdown inglese vive quindi in `/posts/{slug}.md`, quello italiano in `/it-IT/posts/{slug}.md`.
 
 Buone pratiche:
 
@@ -308,16 +308,16 @@ La configurazione linguistica si trova in `src/i18n/index.ts`, le traduzioni in 
 
 | Codice | Lingua |
 |---|---|
-| `en` | English (default) |
+| `en-US` | English (default) |
 | `zh-CN` | 简体中文 |
 | `zh-TW` | 繁體中文 |
-| `ko` | 한국어 |
-| `fr` | Français |
-| `de` | Deutsch |
-| `it` | Italiano |
-| `es` | Español |
-| `ru` | Русский |
-| `id` | Bahasa Indonesia |
+| `ko-KR` | 한국어 |
+| `fr-FR` | Français |
+| `de-DE` | Deutsch |
+| `it-IT` | Italiano |
+| `es-ES` | Español |
+| `ru-RU` | Русский |
+| `id-ID` | Bahasa Indonesia |
 | `pt-BR` | Português (BR) |
 
 Buona pratica: tratta l'inglese come baseline canonica per gli slug ed esegui `pnpm check:post-coverage` prima del deploy.
